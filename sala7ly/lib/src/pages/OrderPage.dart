@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sala7ly/src/widgets/field.dart';
 
 class OrderPage extends StatefulWidget {
-  String name;
+  final String name;
   OrderPage(this.name);
   @override
   _OrderPageState createState() => _OrderPageState();
@@ -15,8 +15,8 @@ class _OrderPageState extends State<OrderPage> {
       appBar: AppBar(
         title: Text(widget.name),
       ),
-      body: CustomScrollView(
-        slivers: <Widget>[
+      body: ListView(
+        children: <Widget>[
           Column(
             children: <Widget>[
               Field()
