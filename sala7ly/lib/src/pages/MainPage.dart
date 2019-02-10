@@ -18,8 +18,6 @@ class _MainPageState extends State<MainPage> {
   }
 
   List respon;
-  var url = "https://newsapi.org/v2/top-headlines?country=eg&apiKey=9f8f7acace7d4f03a72ac8c13a1712a1";
-  var url2 = "http://webhose.io/filterWebContent?token=35c2259b-6f5f-43c0-9fa5-f4c21cfbdd21&format=json&sort=crawled&q=thread.country%3AEG%20(site_type%3Adiscussions)";
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,7 +29,7 @@ class _MainPageState extends State<MainPage> {
           itemBuilder: (BuildContext context, int index){
             return ListTile(
               title: Text(respon[index]["title"]),
-              onTap: (){Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){return MaterialApp(home: OrderPage(respon[index]['title']),);}));},
+              onTap: (){Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){return MaterialApp(home: OrderPage(respon[index]['title'],null),);}));},
             );
           },
         ) 
