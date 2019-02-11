@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 
 class Field extends StatelessWidget {
   final String Hint;
-  Field(this.Hint); 
+  Field(this.Hint,);
+
   /*const Field({
     String Hint;
     Key key,
@@ -14,6 +15,7 @@ class Field extends StatelessWidget {
       decoration: InputDecoration(
         labelText: Hint
       ),
+      onChanged: (aa){print(aa);},
     );
   }
 }

@@ -10,30 +10,27 @@ class OrderPage extends StatefulWidget {
 }
 
 class _OrderPageState extends State<OrderPage> {
+  //String a = OrderPage.a;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.name),
+        title: Text('ahmed'),
       ),
       body: ListView(
         children: <Widget>[
           Column(
             children: <Widget>[
               Container(
-                child: Field("where to go"),
-                margin: EdgeInsets.only(top: 20.0,left: 20.0,right: 20.0),
-              ),
-              Container(
-                child: Field("where to go"),
-                margin: EdgeInsets.only(top: 20.0,left: 20.0,right: 20.0),
-              ),
-              Container(
-                child: Field("where to go"),
-                margin: EdgeInsets.only(top: 20.0,left: 20.0,right: 20.0),
-              ),
-              Container(
-                child: Field("where to go"),
+                child: DropdownButtonFormField(
+                  items: <DropdownMenuItem>[
+                    DropdownMenuItem(
+                      value: "Addre",
+                      child: Text("ahmed"),
+                    )
+                  ],
+                  onSaved: (t){},
+                ),
                 margin: EdgeInsets.only(top: 20.0,left: 20.0,right: 20.0),
               ),
             ],
@@ -42,5 +39,6 @@ class _OrderPageState extends State<OrderPage> {
       )
     );
   }
+
 }
 

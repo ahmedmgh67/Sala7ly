@@ -29,7 +29,7 @@ class _MainPageState extends State<MainPage> {
           itemBuilder: (BuildContext context, int index){
             return ListTile(
               title: Text(respon[index]["title"]),
-              onTap: (){Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context){return MaterialApp(home: OrderPage(respon[index]['title'],null),);}));},
+              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => OrderPage(respon[index]['title'], null)))
             );
           },
         ) 
@@ -37,12 +37,7 @@ class _MainPageState extends State<MainPage> {
     );
   }
   void res () async{
-    var resp = await http.get(
-      "https://jsonplaceholder.typicode.com/posts"
-       /*headers: {
-         //"accept":"application/json"
-       }*/
-      );
+    var resp = await http.get("https://jsonplaceholder.typicode.com/posts");
     var respo = resp.body;
     respon = jsonDecode(respo);
     print(respon);
