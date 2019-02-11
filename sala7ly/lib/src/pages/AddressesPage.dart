@@ -34,10 +34,12 @@ class _AddressesPageState extends State<AddressesPage> {
   void sharedPreferencesRegister ()async{
     
     await pr.setString("Address", "Nile Street");
+    print("egistered");
   }
   Future<List<String>> readPrefrances()async{
     SharedPreferences prefs = await SharedPreferences.getInstance();
     a = [prefs.getString("Address")];
+    print("aaded");
     return a;
   }
 }
