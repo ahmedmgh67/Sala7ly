@@ -7,6 +7,14 @@ class AddressesPage extends StatefulWidget {
 }
 
 class _AddressesPageState extends State<AddressesPage> {
+
+
+  @override
+  void initState(){
+    super.initState();
+    sharedPreferencesRegister();
+  }
+
   SharedPreferences pr ;
   List<String> a ;
   @override
@@ -22,7 +30,7 @@ class _AddressesPageState extends State<AddressesPage> {
         ],
       ),
       body: ListView.builder(
-        itemCount: 1,
+        itemCount: a == null ?0:1,
         itemBuilder: (BuildContext context,int index){
           return Card(
             child: Text(a[index]),

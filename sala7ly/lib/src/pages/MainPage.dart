@@ -2,6 +2,7 @@ import'package:flutter/material.dart';
 import 'package:http/http.dart' as http ;
 import 'dart:convert';
 import 'OrderPage.dart';
+import 'AddressesPage.dart';
 import 'dart:async';
 
 class MainPage extends StatefulWidget {
@@ -22,12 +23,21 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        appBar: AppBar(backgroundColor: Colors.yellow,actions: <Widget>[IconButton(icon: Icon(Icons.access_alarm),onPressed: () => res(),)],),
+        appBar: AppBar(
+          backgroundColor: Colors.yellow,
+          actions: <Widget>[
+            IconButton(icon: Icon(Icons.access_alarm),
+            onPressed: () => res(),
+            )
+          ],
+        ),
         drawer: Drawer(
           child: ListView(
             children: <Widget>[
               ListTile(
                 title: Text("Addresses"),
+                onTap: () => Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (BuildContext context) => AddressesPage())),
               )
             ],
           ),
@@ -37,7 +47,9 @@ class _MainPageState extends State<MainPage> {
           itemBuilder: (BuildContext context, int index){
             return ListTile(
               title: Text(respon[index]["title"]),
-              onTap: () => Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext context) => OrderPage(respon[index]['title'], null)))
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (BuildContext context) => OrderPage(respon[index]['title'], null)))
             );
           },
         ) 
