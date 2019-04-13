@@ -1,114 +1,100 @@
-import'package:flutter/material.dart';
-import 'package:http/http.dart' as http ;
-import 'dart:convert';
+import "package:flutter/material.dart";
+import "package:flutter_expandable_menu/flutter_expandable_menu.dart";
+import "package:flutter_expandable_menu/floating_menu_callback.dart";
+import 'package:flutter_expandable_menu/floating_menu_item.dart';
 import 'OrderPage.dart';
-import 'AddressesPage.dart';
-import 'dart:async';
-
 class MainPage extends StatefulWidget {
   @override
   _MainPageState createState() => _MainPageState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _MainPageState 
+    extends State<MainPage> 
+    with TickerProviderStateMixin 
+    implements FloatingMenuCallback {
+  String centerText = "Home";
+  final List<FloatingMenuItem> floatMenuList = [
+    FloatingMenuItem(id: 1, icon: Icons.favorite, backgroundColor: Colors.deepOrangeAccent),
+    FloatingMenuItem(id: 2, icon: Icons.map, backgroundColor: Colors.brown),
+    FloatingMenuItem(id: 3, icon: Icons.email, backgroundColor: Colors.indigo),
+    FloatingMenuItem(id: 4, icon: Icons.event, backgroundColor: Colors.pink),
+    FloatingMenuItem(id: 5, icon: Icons.print, backgroundColor: Colors.green),
+    FloatingMenuItem(id: 6, icon: Icons.home, backgroundColor: Colors.deepPurple),
+    FloatingMenuItem(id: 7, icon: Icons.location_on, backgroundColor: Colors.blueAccent),
+  ];
 
-  @override
-  void initState(){
-    super.initState();
-    this.res();
-  }
-
-  List respon;
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.yellow,
-          actions: <Widget>[
-            IconButton(icon: Icon(Icons.access_alarm),
-            onPressed: () => res(),
-            )
-          ],
-        ),
-        drawer: Drawer(
-          child: ListView(
-            children: <Widget>[
-              ListTile(
-                title: Text("Addresses"),
-                onTap: () => Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (BuildContext context) => AddressesPage())),
-              )
-            ],
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          Center(
+            child: Text(centerText)
           ),
-        ),
-        body: ListView.builder(
-          itemCount: respon == null ? 0 : respon.length,
-          itemBuilder: (BuildContext context, int index){
-            return ListTile(
-              title: Text(respon[index]["title"]),
-              onTap: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (BuildContext context) => OrderPage(respon[index]['title'], null)))
-            );
-          },
-        ) 
+          FlutterExpandableMenu(
+            menuList: floatMenuList,
+            callback: this,
+            backgroundColor: Colors.transparent,
+            menuBackgroundColor: Colors.black,
+            menuIcon: AnimatedIcons.menu_close,
+            menuAlignment: Alignment.center,
+            outerTransitionDuration: Duration(milliseconds: 300),
+            menusTransitionDuration: Duration(milliseconds: 500),
+            menusTransitionDelay: Duration(milliseconds: 200),
+          )
+        ],
       )
     );
   }
-  void res () async{
-    var resp = await http.get("https://jsonplaceholder.typicode.com/posts");
-    var respo = resp.body;
-    respon = jsonDecode(respo);
-    print(respon);
-    setState(() {
-      
-    });
+  @override
+  void onMenuClick(FloatingMenuItem floatingMenuItem) {
+    if (floatingMenuItem != null) {
+      print("onMenuClicked : " + floatingMenuItem.id.toString());
+      switch (floatingMenuItem.id) {
+        case 1:{
+          centerText = "Favorite";
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderPage("Favourite")));
+        }
+          break;
+        case 2:
+          {
+            centerText = "Map";
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderPage("Map")));
+          }
+          break;
+        case 3:
+          {
+            centerText = "Email";
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderPage("Email")));
+          }
+          break;
+        case 4:
+          {
+            centerText = "Event";
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderPage("Event")));
+          }
+          break;
+        case 5:
+          {
+            centerText = "Print";
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderPage("Print")));
+          }
+          break;
+        case 6:
+          {
+            centerText = "Home";
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderPage("Home")));
+          }
+          break;
+        case 7:
+          {
+            centerText = "Location";
+            Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderPage("Location")));
+          }
+          break;
+      }
+
+      setState(() {});
+    }
   }
 }
-
-/*ListView(
-          children: <Widget>[
-            Container(
-              child: Placeholder(),
-              width: 60.0,
-              height: 200.0,
-            ),
-            ListTile(
-              title: Text("Ahmed"),
-              onTap: (){},
-            ),
-            ListTile(
-              title: Text("Ahmed"),
-              onTap: (){},
-            ),
-            ListTile(
-              title: Text("Ahmed"),
-              onTap: (){},
-            ),
-            ListTile(
-              title: Text("Ahmed"),
-              onTap: (){},
-            ),
-            ListTile(
-              title: Text("Ahmed"),
-              onTap: (){},
-            ),
-            ListTile(
-              title: Text("Ahmed"),
-              onTap: (){},
-            ),
-            ListTile(
-              title: Text("Ahmed"),
-              onTap: (){},
-            ),
-            ListTile(
-              title: Text("Ahmed"),
-              onTap: (){},
-            ),
-            ListTile(
-              title: Text("Ahmed"),
-              onTap: (){},
-            ),
-          ],
-)*/
