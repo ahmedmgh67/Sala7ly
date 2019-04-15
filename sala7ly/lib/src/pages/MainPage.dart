@@ -56,38 +56,32 @@ class _MainPageState
           Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderPage("Favourite")));
         }
           break;
-        case 2:
-          {
+        case 2:{
             centerText = "Map";
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderPage("Map")));
           }
           break;
-        case 3:
-          {
+        case 3:{
             centerText = "Email";
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderPage("Email")));
           }
           break;
-        case 4:
-          {
+        case 4:{
             centerText = "Event";
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderPage("Event")));
           }
           break;
-        case 5:
-          {
+        case 5:{
             centerText = "Print";
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderPage("Print")));
           }
           break;
-        case 6:
-          {
+        case 6:{
             centerText = "Home";
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderPage("Home")));
           }
           break;
-        case 7:
-          {
+        case 7:{
             centerText = "Location";
             Navigator.of(context).push(MaterialPageRoute(builder: (context) => OrderPage("Location")));
           }

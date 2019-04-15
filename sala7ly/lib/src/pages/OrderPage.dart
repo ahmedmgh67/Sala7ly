@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sala7ly/src/widgets/field.dart';
+import 'package:http/http.dart' as http;
 
 class OrderPage extends StatefulWidget {
   final String service;
@@ -10,6 +11,9 @@ class OrderPage extends StatefulWidget {
 
 class _OrderPageState extends State<OrderPage> {
   //String a = OrderPage.a;
+  String address = "";
+  String notes = "";
+  String phone = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,29 +27,48 @@ class _OrderPageState extends State<OrderPage> {
               children: <Widget>[
                 TextField(
                   decoration: InputDecoration(
-                    labelText: "Address",
-
+                    labelText: "Phone Number",
                   ),
                   maxLines: 4,
+                  onChanged: (a) => phone = a,
+                ),
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: "Address",
+                  ),
+                  maxLines: 4,
+                  onChanged: (a) => address = a,
                 ),
                 TextField(
                   decoration: InputDecoration(
                     labelText: "Notes",
-                    
                   ),
                   maxLines: 4,
+                  onChanged: (a) => notes = a,
                 ),
               ],
             ),
           ),
           MaterialButton(
             onPressed: (){},
-            child: Text("Order ${widget.service}"),
+            child: Text("Order ${widget.service} Now"),
           )
         ],
       )
     );
   }
 
+  void submit () async {
+    /*var reqs = http.post(
+      "http",
+      body:{
+        "address" : address,
+        "notes" : notes,
+        "phone" : phone
+      }
+    );
+  }*/
+  print("$address  $notes  $phone");
+  }
+  
 }
-
